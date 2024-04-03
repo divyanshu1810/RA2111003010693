@@ -10,10 +10,21 @@ Product API
 Products Local Server
 
 Succesfull Response with Pagination and sort by value
-![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/7a6bd93b-4763-4a9b-a384-838d244d170c)
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/37c1f890-22b3-440a-adbb-39f9861187e9)
+
 
 Fail Response with invalid company name or product name
-![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/e10572cb-6945-41fc-a8e5-cb51504a05a0)
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/09389404-2306-457c-8c8c-96cfd51000c8)
+
+Product By Id Response
+
+Successfull Response
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/29421f49-2824-49bb-a6b3-d39f8ea3e63b)
+
+
+Fail Response with invalid category name or product id
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/7d56d8cf-87f8-4cc0-b52d-5a273180e855)
+
 
 
 
