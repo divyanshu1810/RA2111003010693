@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { handleGetProducts } from './controller';
 import { validateRequest } from '../middlwares';
-import { productsSchema } from '../utils';
+import { productsSchema } from '../models';
 
 export default (): Router => {
   const app = Router();

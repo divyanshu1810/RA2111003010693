@@ -17,3 +17,18 @@ export function validateRequest(location: RequestLocation, schema: z.AnyZodObjec
         }
     };
 }
+
+export const checkValidInput = (parsedMaxPrice: number, parsedMinPrice: number, parsedTop: number, sortBy: string) => {
+    if (isNaN(parsedMaxPrice) || isNaN(parsedMinPrice) || isNaN(parsedTop)) {
+        throw new Error('User input is not a number');
+    }
+    if (parsedMaxPrice < 0 || parsedMinPrice < 0 || parsedTop < 0) {
+        throw new Error('User input cannot be negative');
+    }
+    if (parsedMaxPrice < parsedMinPrice) {
+        throw new Error('Max price cannot be less than min price');
+    }
+    if (!sortBy || sortBy.length < 0 && !['price', 'rating', 'discount'].includes(sortBy)) {
+        throw new Error('Invalid sortBy parameter');
+    }
+};

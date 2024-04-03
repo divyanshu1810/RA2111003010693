@@ -1,10 +1,10 @@
 import config from "../config";
-import { z } from 'zod';
+import { Product } from "../models";
 
 const baseURL = config.baseUrl;
 const authToken = config.token.secret;
 
-export const handleAPICall = async (companyName: string, categoryName: string, maxPrice: number, minPrice: number, top: number) => {
+export const handleAPICall = async (companyName: string, categoryName: string, maxPrice: number, minPrice: number, top: number, sortBy: string) => {
     const apiUrl = `${baseURL}/test/companies/${companyName}/categories/${categoryName}/products?top=${top}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
 
     const headers = {
@@ -21,23 +21,19 @@ export const handleAPICall = async (companyName: string, categoryName: string, m
     }
 
     const data = await response.json();
+    if (sortBy) {
+        data.sort((a: Product, b: Product) => {
+            if (sortBy === 'price') {
+                return b.price - a.price;
+            } else if (sortBy === 'rating') {
+                return b.rating - a.rating;
+            } else if (sortBy === 'discount') {
+                return b.discount - a.discount;
+            }
+        });
+    }
     return data;
 };
 
-export const productsSchema = z.object({
-    companyName: z.enum(['AMZ', 'FLP', 'SNP', 'MYN', 'AZO']),
-    categoryName: z.enum(['Phone', 'Computer', 'TV', 'Earphone', 'Tablet', 'Charger', 'Mouse', 'Keypad', 'Bluetooth', 'Pendrive', 'Remote', 'Speaker', 'Headset', 'Laptop', 'PC']),
-});
 
-export const checkValidInput = (parsedMaxPrice: number, parsedMinPrice: number, parsedTop: number) => {
-    if (isNaN(parsedMaxPrice) || isNaN(parsedMinPrice) || isNaN(parsedTop)) {
-        throw new Error('User input is not a number');
-    }
-    if (parsedMaxPrice < 0 || parsedMinPrice < 0 || parsedTop < 0) {
-        throw new Error('User input cannot be negative');
-    }
-    if (parsedMaxPrice < parsedMinPrice) {
-        throw new Error('Max price cannot be less than min price');
-    }
-};
 

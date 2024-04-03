@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateRequest = void 0;
+exports.checkValidInput = exports.validateRequest = void 0;
 function validateRequest(location, schema) {
     return async (req, res, next) => {
         try {
@@ -16,4 +16,19 @@ function validateRequest(location, schema) {
     };
 }
 exports.validateRequest = validateRequest;
+const checkValidInput = (parsedMaxPrice, parsedMinPrice, parsedTop, sortBy) => {
+    if (isNaN(parsedMaxPrice) || isNaN(parsedMinPrice) || isNaN(parsedTop)) {
+        throw new Error('User input is not a number');
+    }
+    if (parsedMaxPrice < 0 || parsedMinPrice < 0 || parsedTop < 0) {
+        throw new Error('User input cannot be negative');
+    }
+    if (parsedMaxPrice < parsedMinPrice) {
+        throw new Error('Max price cannot be less than min price');
+    }
+    if (!sortBy || sortBy.length < 0 && !['price', 'rating', 'discount'].includes(sortBy)) {
+        throw new Error('Invalid sortBy parameter');
+    }
+};
+exports.checkValidInput = checkValidInput;
 //# sourceMappingURL=index.js.map
