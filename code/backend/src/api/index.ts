@@ -7,6 +7,6 @@ export default (): Router => {
   const app = Router();
 
   //TODO: add routes here...
-  app.get('/test/companies/:companyName/categories/:categoryName/products', validateRequest('body', productsSchema), handleGetProducts);
+  app.get('/test/companies/:companyName/categories/:categoryName/products', validateRequest('params', productsSchema), handleGetProducts);
   return app;
 };
