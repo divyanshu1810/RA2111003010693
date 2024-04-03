@@ -3,23 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleAPICall = void 0;
-const config_1 = __importDefault(require("../config"));
-const baseURL = config_1.default.baseUrl;
-const authToken = config_1.default.token.secret;
-const handleAPICall = async (companyName, categoryName, maxPrice, minPrice, top, sortBy) => {
-    const apiUrl = `${baseURL}/test/companies/${companyName}/categories/${categoryName}/products?top=${top}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
-    const headers = {
-        Authorization: `Bearer ${authToken}`
-    };
-    const response = await fetch(apiUrl, {
-        method: 'GET',
-        headers: headers
-    });
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
+exports.getProductsById = exports.getProducts = void 0;
+const database_1 = __importDefault(require("../loaders/database"));
+const mongodb_1 = require("mongodb");
+const getProducts = async (categoryName, maxPrice, minPrice, top, sortBy) => {
+    const data_collection = await (await (0, database_1.default)()).collection('products');
+    const data = await data_collection.find({
+        categoryName,
+        price: { $gte: minPrice, $lte: maxPrice }
+    }).limit(top).toArray();
     if (sortBy) {
         data.sort((a, b) => {
             if (sortBy === 'price') {
@@ -35,5 +27,11 @@ const handleAPICall = async (companyName, categoryName, maxPrice, minPrice, top,
     }
     return data;
 };
-exports.handleAPICall = handleAPICall;
+exports.getProducts = getProducts;
+const getProductsById = async (productId, categoryName) => {
+    const data_collection = await (await (0, database_1.default)()).collection('products');
+    const data = await data_collection.findOne({ _id: new mongodb_1.ObjectId(productId), categoryName });
+    return data;
+};
+exports.getProductsById = getProductsById;
 //# sourceMappingURL=index.js.map
