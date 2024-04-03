@@ -9,8 +9,8 @@ Product API
 
 Products Local Server
 
-Succesfull Response with Pagination
-![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/86d6d243-2568-430e-b2c6-24347d46299e)
+Succesfull Response with Pagination and sort by value
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/7a6bd93b-4763-4a9b-a384-838d244d170c)
 
 Fail Response with invalid company name or product name
 ![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/e10572cb-6945-41fc-a8e5-cb51504a05a0)
