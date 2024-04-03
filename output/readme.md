@@ -29,5 +29,8 @@ Fail Response with invalid category name or product id
 All Products Page
 ![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/348de763-8a28-4d8b-92e2-e78c8abd07cb)
 
+Product Page
+![image](https://github.com/divyanshu1810/RA2111003010693/assets/91051053/d9ca2656-7853-4a86-adaf-eebcbe39395e)
+
 
 
