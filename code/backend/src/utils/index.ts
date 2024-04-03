@@ -1,0 +1,1 @@
+export const handleAPICall = async (companyName: string, categoryName: string) => { };

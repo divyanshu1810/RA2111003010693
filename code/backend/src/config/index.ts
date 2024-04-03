@@ -31,4 +31,16 @@ export default {
   api: {
     prefix: '/api',
   },
+
+  /**
+   * Authorisation token
+   */
+  token: {
+    secret: process.env.AUTHORIZATION_TOKEN,
+  },
+
+  /**
+   * Base URL 
+   */
+  baseUrl: process.env.BASE_URL,
 };
