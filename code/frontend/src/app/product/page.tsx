@@ -12,7 +12,7 @@ const ProductDetailsPage = () => {
     useEffect(() => {
         if (_id) {
             const fetchProduct = async () => {
-                const res = await fetch('http://localhost:3000/api/categories/Phone/products/' + _id);
+                const res = await fetch(`http://localhost:3000/api/categories/${categoryName}/products/` + _id);
                 const data = await res.json();
                 setProduct(data);
             };
